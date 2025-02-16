@@ -40,7 +40,13 @@ const ShoppingListing = () => {
      }
 
    setFilters(cpyFilters)
+   sessionStorage.setItem('filters',JSON.stringify(cpyFilters))
   }
+
+  useEffect(()=>{
+      setSort('price-lowtohigh');
+      setFilters(JSON.parse(sessionStorage.getItem('filters')) || {});
+  },[])
 
   // fetch products
   useEffect(()=>{
@@ -76,7 +82,7 @@ const ShoppingListing = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
                {
-                productList&&productList?.length>0?productList?.map((productItem)=><ShoppingProductTile product={productItem}/>):null
+                productList&&productList?.length>0?productList?.map((productItem)=><ShoppingProductTile key={productItem} product={productItem}/>):null
                }
           </div>
        </div>
