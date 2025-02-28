@@ -1,4 +1,5 @@
 import ProductFilter from "@/components/shopping/filter"
+import ShoppingProductTile from "@/components/shopping/product-tile"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { sortOptions } from "@/config"
@@ -45,7 +46,9 @@ const ShoppingListing = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
-              
+               {
+                productList&&productList?.length>0?productList?.map((productItem)=><ShoppingProductTile product={productItem}/>):null
+               }
           </div>
        </div>
     </div>
