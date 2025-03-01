@@ -1,3 +1,4 @@
+import { brandOptionsMap, categoryOptionsMap } from "@/config"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardFooter } from "../ui/card"
@@ -16,8 +17,8 @@ const ShoppingProductTile= ({product}) => {
          <CardContent className={'p-4'}>
              <h2 className="text-xl font-bold mb-2">{product?.tile}</h2>
              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm text-muted-foreground">{product?.category}</span>
-                <span className="text-sm text-muted-foreground">{product?.brand}</span>
+                <span className="text-sm text-muted-foreground">{categoryOptionsMap[product?.category]}</span>
+                <span className="text-sm text-muted-foreground">{brandOptionsMap[product?.brand]}</span>
              </div>
               <div className="flex justify-between items-center mb-2">
                 <span className={`${product?.salePrice > 0 ? 'line-through':''} text-lg font-semibold text-primary`}>{product?.price}</span>
