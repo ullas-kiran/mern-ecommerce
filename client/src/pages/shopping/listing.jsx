@@ -1,6 +1,7 @@
 import ProductFilter from "@/components/shopping/filter"
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { sortOptions } from "@/config"
 import { ArrowUpDownIcon } from "lucide-react"
 
 
@@ -20,6 +21,13 @@ const ShoppingListing = () => {
                     <span>Sort by</span>
                    </Button>
                 </DropdownMenuTrigger>
+                <DropdownMenuContent className={'w-[200px]'} align="end">
+                   <DropdownMenuRadioGroup>
+                    {
+                      sortOptions.map(sortItem=><DropdownMenuRadioItem key={sortItem.id}>{sortItem.label}</DropdownMenuRadioItem>)
+                    }
+                   </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </div>
