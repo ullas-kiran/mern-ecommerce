@@ -69,6 +69,8 @@ const AdminProducts = () => {
       if(data?.payload?.success){
         dispatch(fetchAllProducts())
       }
+     }).catch((err)=>{
+      console.log(err)
      })
   }
 
