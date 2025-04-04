@@ -56,7 +56,7 @@ const ProductImageUpload = ({imageLoadingState,setImageLoadingState,imageFile,se
   },[imageFile])
 
   return (
-    <div className="w-full max-w-md mx-auto mt-4">
+    <div className="w-full max-w-md mx-auto mt-4 px-6">
       <Label className={"text-lg font-semibold mb-2 block"}>Upload Image</Label>
       <div onDragOver={handleDragOver} onDrag={handleDrag} className="border-2 border-dashed rounded-lg p-4">
         <Input  id="image-upload"  type="file" className="hidden" ref={inputRef} onChange={handleImageFileChange}/>

@@ -42,7 +42,7 @@ const AdminProducts = () => {
               <SheetTitle>Add New Product</SheetTitle>
             </SheetHeader>
             <ProductImageUpload imageLoadingState={imageLoadingState} setImageLoadingState={setImageLoadingState} imageFile={imageFile} setImageFile={setImageFile} uploadedImageUrl={uploadedImageUrl} setUploadedImageUrl={setUploadedImageUrl}/>
-            <div className="py-6">
+            <div className="px-6">
             <CommonForm
              formData={formData}
              setFormData={setFormData}
