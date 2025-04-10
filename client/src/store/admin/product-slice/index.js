@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState={
     isLoading:false,
@@ -47,7 +47,6 @@ const adminProductSlice=createSlice({
      builder.addCase(fetchAllProducts.pending,(state)=>{
         state.isLoading=true
      }).addCase(fetchAllProducts.fulfilled,(state,action)=>{
-        console.log("action.payload",action.payload)
       state.isLoading=false;
       state.productList=action.payload
      }).addCase(fetchAllProducts.rejected,(state,action)=>{

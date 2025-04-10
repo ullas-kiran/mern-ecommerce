@@ -3,7 +3,9 @@ import ProductImageUpload from "@/components/admin/image-upload"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { addProductFormElements } from "@/config"
-import { Fragment, useState } from "react"
+import { fetchAllProducts } from "@/store/admin/product-slice"
+import { Fragment, useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 
 
@@ -25,9 +27,21 @@ const AdminProducts = () => {
   const [imageFile,setImageFile]=useState(null);
   const [uploadedImageUrl,setUploadedImageUrl]=useState('')
   const [imageLoadingState,setImageLoadingState]=useState(false); 
-  function onSubmit(){
+  const {productList} = useSelector(state=>state.adminProducts)
+  const dispatch = useDispatch()
 
+
+  function onSubmit(event){
+    event.preventDefault();
   }
+
+
+  useEffect(()=>{
+   dispatch(fetchAllProducts())
+  },[dispatch])
+
+  console.log("productList",productList)
+
   return (
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
