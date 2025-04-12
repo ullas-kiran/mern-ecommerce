@@ -11,6 +11,7 @@ import { addProductFormElements } from "@/config";
 import { addNewProduct, fetchAllProducts } from "@/store/admin/product-slice";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
 
 const initialFormData = {
   image: null,
@@ -31,7 +32,7 @@ const AdminProducts = () => {
   const [imageLoadingState, setImageLoadingState] = useState(false);
   const { productList } = useSelector((state) => state.adminProducts);
   const dispatch = useDispatch();
-
+  
   function onSubmit(event) {
     event.preventDefault();
     dispatch(addNewProduct({
@@ -39,6 +40,13 @@ const AdminProducts = () => {
       image:uploadedImageUrl
     })).then((data)=>{
       console.log(data)
+      if(data?.payload?.success){
+        dispatch(fetchAllProducts());
+        setOpenCreateProductDialog(false)
+         setImageFile(null);
+         setFormData(initialFormData)
+         toast.success("Product add successfully")
+      }
     })
   }
 

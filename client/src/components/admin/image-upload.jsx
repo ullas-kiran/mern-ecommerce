@@ -72,7 +72,6 @@ const ProductImageUpload = ({imageLoadingState,setImageLoadingState,imageFile,se
             <p className="text-sm font-medium">{imageFile.name}</p>
             <Button variant={"ghost"} size={"icon"} className={"text-muted-foreground hover:text-foreground"} onClick={handleRemoveImage}>
               <XIcon className="w-4 h-4"/>
-              <span className="">Remove File</span>
             </Button>
             </div>)}
       </div>
