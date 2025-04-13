@@ -31,30 +31,31 @@ const AdminProducts = () => {
   const [imageFile, setImageFile] = useState(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [imageLoadingState, setImageLoadingState] = useState(false);
+  const [currentEditedId, setCurrentEditedId] = useState(null);
   const { productList } = useSelector((state) => state.adminProducts);
   const dispatch = useDispatch();
-  
+
   function onSubmit(event) {
     event.preventDefault();
-    dispatch(addNewProduct({
-      ...formData,
-      image:uploadedImageUrl
-    })).then((data)=>{
-      if(data?.payload?.success){
+    dispatch(
+      addNewProduct({
+        ...formData,
+        image: uploadedImageUrl,
+      })
+    ).then((data) => {
+      if (data?.payload?.success) {
         dispatch(fetchAllProducts());
-        setOpenCreateProductDialog(false)
-         setImageFile(null);
-         setFormData(initialFormData)
-         toast.success("Product add successfully")
+        setOpenCreateProductDialog(false);
+        setImageFile(null);
+        setFormData(initialFormData);
+        toast.success("Product add successfully");
       }
-    })
+    });
   }
 
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
-
-  console.log("productList", uploadedImageUrl);
 
   return (
     <Fragment>
@@ -64,9 +65,11 @@ const AdminProducts = () => {
         </Button>
       </div>
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {
-          productList && productList.length>0?productList.map(productItem=><AdminProductTile product={productItem}/>):null
-        }
+        {productList && productList.length > 0
+          ? productList.map((productItem) => (
+              <AdminProductTile setFormData={setFormData} setOpenCreateProductDialog={setOpenCreateProductDialog} setCurrentEditedId={setCurrentEditedId} product={productItem} />
+            ))
+          : null}
       </div>
       <Sheet
         open={openCreateProductDialog}
