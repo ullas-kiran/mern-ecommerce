@@ -88,6 +88,7 @@ const AdminProducts = () => {
             setImageFile={setImageFile}
             uploadedImageUrl={uploadedImageUrl}
             setUploadedImageUrl={setUploadedImageUrl}
+            isEditMode={currentEditedId !== null}
           />
           <div className="px-6">
             <CommonForm
