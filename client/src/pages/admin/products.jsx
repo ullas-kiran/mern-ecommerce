@@ -61,7 +61,7 @@ const AdminProducts = () => {
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
         <Button onClick={() => setOpenCreateProductDialog(true)}>
-          Add New Product
+          {currentEditedId !== null ?'Edit Product':'Add New Product'}
         </Button>
       </div>
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
@@ -75,11 +75,15 @@ const AdminProducts = () => {
         open={openCreateProductDialog}
         onOpenChange={() => {
           setOpenCreateProductDialog(false);
+          setCurrentEditedId(null);
+          setFormData(initialFormData);
         }}
       >
         <SheetContent side={"right"} className="overflow-auto">
           <SheetHeader>
-            <SheetTitle>Add New Product</SheetTitle>
+            <SheetTitle>
+                {currentEditedId !== null ?'Edit Product':'Add New Product'}
+            </SheetTitle>
           </SheetHeader>
           <ProductImageUpload
             imageLoadingState={imageLoadingState}
@@ -94,7 +98,7 @@ const AdminProducts = () => {
             <CommonForm
               formData={formData}
               setFormData={setFormData}
-              buttonText={"Add"}
+              buttonText= {currentEditedId !== null ?'Edit':'Add'}
               onSubmit={onSubmit}
               formControls={addProductFormElements}
             />
