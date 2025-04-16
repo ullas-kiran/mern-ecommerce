@@ -9,7 +9,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { addProductFormElements } from "@/config";
-import { addNewProduct, fetchAllProducts } from "@/store/admin/product-slice";
+import { addNewProduct, editProduct, fetchAllProducts } from "@/store/admin/product-slice";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
@@ -37,6 +37,17 @@ const AdminProducts = () => {
 
   function onSubmit(event) {
     event.preventDefault();
+    currentEditedId !==null ? dispatch(editProduct({
+      id:currentEditedId,formData
+    })).then((data)=>{
+      console.log(data,'edit');
+      if(data?.payload?.success){
+         dispatch(fetchAllProducts());
+         setCurrentEditedId(null);
+        setOpenCreateProductDialog(false);
+        setFormData(initialFormData);
+      }
+    }):
     dispatch(
       addNewProduct({
         ...formData,
