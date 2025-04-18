@@ -64,6 +64,10 @@ const AdminProducts = () => {
     });
   }
 
+  function isFormValid(){
+    Object.keys(formData).map((key)=>formData[key] !== '').every(item=>item)
+  }
+
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
@@ -112,6 +116,7 @@ const AdminProducts = () => {
               buttonText= {currentEditedId !== null ?'Edit':'Add'}
               onSubmit={onSubmit}
               formControls={addProductFormElements}
+              isBtnDisabled={!isFormValid()}
             />
           </div>
         </SheetContent>
