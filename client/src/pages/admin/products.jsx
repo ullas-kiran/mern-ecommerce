@@ -9,7 +9,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { addProductFormElements } from "@/config";
-import { addNewProduct, editProduct, fetchAllProducts } from "@/store/admin/product-slice";
+import { addNewProduct, deleteProduct, editProduct, fetchAllProducts } from "@/store/admin/product-slice";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
@@ -64,6 +64,14 @@ const AdminProducts = () => {
     });
   }
 
+  function handleDelete(getCurrentProductId){
+     dispatch(deleteProduct(getCurrentProductId)).then((data)=>{
+      if(data?.payload?.success){
+        dispatch(fetchAllProducts())
+      }
+     })
+  }
+
   function isFormValid(){
     Object.keys(formData).map((key)=>formData[key] !== '').every(item=>item)
   }
@@ -82,7 +90,7 @@ const AdminProducts = () => {
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
         {productList && productList.length > 0
           ? productList.map((productItem) => (
-              <AdminProductTile setFormData={setFormData} setOpenCreateProductDialog={setOpenCreateProductDialog} setCurrentEditedId={setCurrentEditedId} product={productItem} />
+              <AdminProductTile handleDelete={handleDelete} setFormData={setFormData} setOpenCreateProductDialog={setOpenCreateProductDialog} setCurrentEditedId={setCurrentEditedId} product={productItem} />
             ))
           : null}
       </div>
