@@ -1,4 +1,5 @@
 const { imageUploadUtil } = require("../../helpers/cloudinary");
+const Product = require("../../models/product");
 
 const handleImageUpload=async(req,res)=>{
      
@@ -24,7 +25,13 @@ const result = await imageUploadUtil(dataUri);
 
 const addProduct=async(req,res)=>{
     try {
-        
+        const {image,title,description,category,brand,price,salePrice,totalStock}=req.body;
+        const newlyCreatedProduct= new Product({image,title,description,category,brand,price,salePrice,totalStock});
+        await newlyCreatedProduct.save();
+        res.status(201).json({
+            success:true,
+            data:newlyCreatedProduct
+        })
     } catch (error) {
         res.status(500).json({
             success:false,
@@ -73,4 +80,4 @@ const deleteProduct=async(req,res)=>{
 }
 
 
-module.exports={handleImageUpload}
+module.exports={handleImageUpload,addProduct,fetchAllProducts,editProduct,deleteProduct}
