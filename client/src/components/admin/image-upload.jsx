@@ -40,7 +40,7 @@ const ProductImageUpload = ({imageFile,setImageFile,uploadedImageUrl,setUploaded
   async function uploadImageToCloudinary(){
     const data=new FormData();
     data.append('my_file',imageFile);
-    const response= await axios.post(`http://localhost:5000/api/auth/products/upload-image`,data);
+    const response= await axios.post(`http://localhost:5000/api/admin/products/upload-image`,data);
     if(response){
       setUploadedImageUrl(response.data)
     }
@@ -48,9 +48,9 @@ const ProductImageUpload = ({imageFile,setImageFile,uploadedImageUrl,setUploaded
 
   useEffect(()=>{
    if(imageFile !==null){
-
+    uploadImageToCloudinary()
    }
-  },[])
+  },[imageFile])
 
   return (
     <div className="w-full max-w-md mx-auto mt-4">
