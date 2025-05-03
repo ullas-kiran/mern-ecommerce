@@ -1,7 +1,8 @@
 const express=require('express');
 const mongoose=require('mongoose')
 const cookieParser=require('cookie-parser');
-const cors=require('cors')
+const cors=require('cors');
+const authRouter=require('./routes/auth/auth-routes')
 
 
 mongoose.connect(`mongodb+srv://ullaskiranm:kiran123@cluster0.fbavnhp.mongodb.net/`).
@@ -19,5 +20,6 @@ app.use(cors({
 
 app.use(cookieParser());
 app.use(express.json());
+app.use('/api/auth',authRouter)
 
 app.listen(PORT,()=>console.log(`Server is running on ${PORT}`))
