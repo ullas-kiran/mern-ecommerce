@@ -28,6 +28,7 @@ const CommonForm = ({ formControls,formData,setFormData,onSubmit,buttonText }) =
             placeholder={getControlItem?.placeHolder}
             id={getControlItem?.name}
             type={getControlItem?.type}
+            autoComplete="current-password"
             value={value}
             onChange={event=>setFormData({
                 ...formData,

@@ -8,13 +8,13 @@ const User=require('../models/user')
 
 const registerUser=async(req,res)=>{
 
-    const {userName,email,password}=req.body;
+    const {username,email,password}=req.body;
 
     try {
 
         const hashPassword= await bcrypt.hash(password,12);
         const newUser=new User({
-            userName,email,password:hashPassword
+            username,email,password:hashPassword
         })
 
 
