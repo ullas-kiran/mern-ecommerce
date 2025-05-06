@@ -21,7 +21,9 @@ const AuthRegister = () => {
     dipsatch(registerUser(formData)).then((data)=> {
      if(data?.payload?.password){
        navigate('/auth/login')
-       toast("Event has been created.")
+       toast.success(data?.payload?.message);
+     }else{
+      toast.error(data?.payload?.message)
      }
     
     })
