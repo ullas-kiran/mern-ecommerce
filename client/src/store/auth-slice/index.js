@@ -20,6 +20,19 @@ export const registerUser=createAsyncThunk('/auth/register',
   }
 )
 
+export const loginUser=createAsyncThunk('/auth/login',
+  async(formData)=>{
+    const response=await axios.post(`http://localhost:5000/api/auth/login`,
+      formData,
+      {
+        withCredentials:true
+      }
+    )
+
+    return response.data;
+  }
+)
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
