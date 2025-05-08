@@ -18,10 +18,7 @@ import { Route, Routes } from "react-router-dom";
 
 const Approute = () => {
   const isAuthenticated = false;
-  const user = {
-    name:"kiran",
-    role:"user"
-  };
+  const user =null
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">

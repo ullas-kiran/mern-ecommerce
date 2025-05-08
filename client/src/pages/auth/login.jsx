@@ -4,6 +4,7 @@ import { loginUser } from "@/store/auth-slice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 const initialState = {
   email: "",
@@ -12,11 +13,15 @@ const initialState = {
 
 const AuthLogin = () => {
   const [formData, setFormData] = useState(initialState);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   function onSubmit(event) {
     event.preventDefault();
    dispatch(loginUser(formData)).then((data)=>{
-    console.log(data);
+    if(data?.payload?.success){
+     toast.success(data?.payload?.message)
+    }else{
+      toast.error(data?.payload?.message)
+    };
    })
   }
 
