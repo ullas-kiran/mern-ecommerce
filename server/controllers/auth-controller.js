@@ -88,7 +88,7 @@ const loginUser=async(req,res)=>{
 
 
 // logout
-const logout=(req,res)=>{
+const logoutUser=(req,res)=>{
 res.clearCookie('token').json({
     success:true,
     message:"Logout successfully"
@@ -118,4 +118,4 @@ const authMiddleware=async(req,res,next)=>{
   }
 }
 
-module.exports={registerUser,loginUser,logout,authMiddleware}
+module.exports={registerUser,loginUser,logoutUser,authMiddleware}
