@@ -2,6 +2,7 @@ import CheckAuth from "@/common/check-auth";
 import AdminLayout from "@/components/admin/layout";
 import AuthLayout from "@/components/auth/layout";
 import ShoppingLayout from "@/components/shopping/layout";
+import { Skeleton } from "@/components/ui/skeleton";
 import AdminDashboard from "@/pages/admin/dashboard";
 import AdminFeatures from "@/pages/admin/features";
 import AdminOrders from "@/pages/admin/orders";
@@ -31,7 +32,7 @@ const Approute = () => {
   },[dispatch])
 
   if(isLoading){
-   return <div>Loading...</div>    
+   return <Skeleton className="w-full h-[600px] rounded-full" />  
   }
 
   return (
