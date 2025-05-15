@@ -1,8 +1,14 @@
+import { Button } from "@/components/ui/button"
+import { Fragment } from "react"
 
 
 const AdminProducts = () => {
   return (
-    <div>AdminProducts</div>
+    <Fragment>
+      <div className="mb-5 flex justify-end">
+        <Button>Add new Product</Button>
+      </div>
+    </Fragment>
   )
 }
 
