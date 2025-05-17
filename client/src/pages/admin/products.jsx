@@ -1,4 +1,5 @@
 import CommonForm from "@/common/form"
+import ProductImageUpload from "@/components/admin/image-upload"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { addProductFormElements } from "@/config"
@@ -20,7 +21,9 @@ const initialFormData={
 const AdminProducts = () => {
 
   const [openCreateProductDialog,setOpenCreateProductDialog]=useState(false)
-  const [formData,setFormData]=useState(initialFormData)
+  const [formData,setFormData]=useState(initialFormData);
+  const [imageFile,setImageFile]=useState(null);
+  const [uploadedImageUrl,setUploadedImageUrl]=useState('')
 
   function onSubmit(){
 
@@ -28,7 +31,7 @@ const AdminProducts = () => {
   return (
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
-        <Button onClick={()=>setOpenCreateProductDialog(true)}>Add new Product</Button>
+        <Button onClick={()=>setOpenCreateProductDialog(true)}>Add New Product</Button>
       </div>
       <div className="grid gap-4 md:grid-cols-4 lg:grid-cols-4">
 
@@ -38,7 +41,8 @@ const AdminProducts = () => {
             <SheetHeader>
               <SheetTitle>Add New Product</SheetTitle>
             </SheetHeader>
-            <div className="px-6">
+            <ProductImageUpload file={imageFile} setFile={setImageFile} uploadedImageUrl={uploadedImageUrl} setUploadedImageUrl={setUploadedImageUrl}/>
+            <div className="py-6">
             <CommonForm
              formData={formData}
              setFormData={setFormData}
