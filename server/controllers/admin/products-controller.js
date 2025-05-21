@@ -20,5 +20,57 @@ const result = await imageUploadUtil(dataUri);
     }
 }
 
+// add new product
+
+const addProduct=async(req,res)=>{
+    try {
+        
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Error occured"
+        })
+    }
+}
+
+// fetch all product
+
+const fetchAllProducts=async(req,res)=>{
+      try {
+        
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Error occured"
+        })
+    }
+}
+
+// edit product
+
+const editProduct=async(req,res)=>{
+      try {
+        
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Error occured"
+        })
+    }
+}
+
+// delete product
+
+const deleteProduct=async(req,res)=>{
+      try {
+        
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Error occured"
+        })
+    }
+}
+
 
 module.exports={handleImageUpload}
