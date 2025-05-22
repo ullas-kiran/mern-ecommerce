@@ -1,5 +1,6 @@
 import CommonForm from "@/common/form";
 import ProductImageUpload from "@/components/admin/image-upload";
+import AdminProductTile from "@/components/admin/product-tile";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -39,7 +40,6 @@ const AdminProducts = () => {
       ...formData,
       image:uploadedImageUrl
     })).then((data)=>{
-      console.log(data)
       if(data?.payload?.success){
         dispatch(fetchAllProducts());
         setOpenCreateProductDialog(false)
@@ -63,7 +63,11 @@ const AdminProducts = () => {
           Add New Product
         </Button>
       </div>
-      <div className="grid gap-4 md:grid-cols-4 lg:grid-cols-4"></div>
+      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {
+          productList && productList.length>0?productList.map(productItem=><AdminProductTile product={productItem}/>):null
+        }
+      </div>
       <Sheet
         open={openCreateProductDialog}
         onOpenChange={() => {
