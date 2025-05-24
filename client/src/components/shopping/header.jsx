@@ -4,6 +4,8 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { useSelector } from "react-redux";
 import { shoppingViewHeaderMenuItems } from "@/config";
+import { DropdownMenu, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "../ui/avatar";
 
 function MenuItems() {
   return (
@@ -28,6 +30,13 @@ function HeaderRightContent() {
         <ShoppingCart className="w-6 h-6" />
         <span className="sr-only">User cart</span>
       </Button>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+           <Avatar className={'bg-black'}>
+            <AvatarFallback className={'bg-black text-white font-extrabold'}>SM</AvatarFallback>
+           </Avatar>
+        </DropdownMenuTrigger>
+      </DropdownMenu>
     </div>
   );
 }
@@ -58,7 +67,9 @@ const ShoppingHeader = () => {
         <div className="hidden lg:block">
           <MenuItems />
         </div>
-        {isAuthenticated ? <div></div> : null}
+        {isAuthenticated ? <div>
+          <HeaderRightContent/>
+        </div> : null}
       </div>
     </header>
   );
