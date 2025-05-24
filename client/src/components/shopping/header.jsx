@@ -43,7 +43,9 @@ const ShoppingHeader = () => {
           <SheetContent
             side={"left"}
             className={"w-full max-w-xs"}
-          ></SheetContent>
+          >
+            <MenuItems/>
+          </SheetContent>
         </Sheet>
         <div className="hidden lg:block">
           <MenuItems/>
