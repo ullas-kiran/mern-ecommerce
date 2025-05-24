@@ -1,4 +1,4 @@
-import { HousePlug, Menu } from "lucide-react";
+import { HousePlug, Menu, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
@@ -21,6 +21,17 @@ function MenuItems() {
   );
 }
 
+function HeaderRightContent() {
+  return (
+    <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+      <Button variant={"outline"} size={"icon"}>
+        <ShoppingCart className="w-6 h-6" />
+        <span className="sr-only">User cart</span>
+      </Button>
+    </div>
+  );
+}
+
 const ShoppingHeader = () => {
   const { isAuthenticated } = useSelector(
     (state) => state.auth.isAuthenticated
@@ -40,15 +51,12 @@ const ShoppingHeader = () => {
               <span className="sr-only">Toggle header menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent
-            side={"left"}
-            className={"w-full max-w-xs"}
-          >
-            <MenuItems/>
+          <SheetContent side={"left"} className={"w-full max-w-xs"}>
+            <MenuItems />
           </SheetContent>
         </Sheet>
         <div className="hidden lg:block">
-          <MenuItems/>
+          <MenuItems />
         </div>
         {isAuthenticated ? <div></div> : null}
       </div>
