@@ -4,7 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { useSelector } from "react-redux";
 import { shoppingViewHeaderMenuItems } from "@/config";
-import { DropdownMenu, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 
 function MenuItems() {
@@ -36,15 +36,16 @@ function HeaderRightContent() {
             <AvatarFallback className={'bg-black text-white font-extrabold'}>SM</AvatarFallback>
            </Avatar>
         </DropdownMenuTrigger>
+        <DropdownMenuContent side="right" className={'w-56'}>
+           <DropdownMenuLabel>Logged in as </DropdownMenuLabel>
+        </DropdownMenuContent>
       </DropdownMenu>
     </div>
   );
 }
 
 const ShoppingHeader = () => {
-  const { isAuthenticated } = useSelector(
-    (state) => state.auth.isAuthenticated
-  );
+  const { isAuthenticated,user } = useSelector((state) => state.auth);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
