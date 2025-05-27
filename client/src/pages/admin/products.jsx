@@ -81,7 +81,7 @@ const AdminProducts = () => {
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
-
+console.log("uploadedImageUrl",uploadedImageUrl,"imageFile",imageFile)
   return (
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
@@ -92,7 +92,7 @@ const AdminProducts = () => {
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
         {productList && productList.length > 0
           ? productList.map((productItem) => (
-              <AdminProductTile handleDelete={handleDelete} setFormData={setFormData} setOpenCreateProductDialog={setOpenCreateProductDialog} setCurrentEditedId={setCurrentEditedId} product={productItem} />
+              <AdminProductTile  key={productItem._id} handleDelete={handleDelete} setFormData={setFormData} setOpenCreateProductDialog={setOpenCreateProductDialog} setCurrentEditedId={setCurrentEditedId} product={productItem} />
             ))
           : null}
       </div>
