@@ -12,7 +12,7 @@ import { createSearchParams, useSearchParams } from "react-router-dom"
 
 function createSearchParamsHelper(filterParams){
    const queryParams=[]
-   for(const [key,value] of Object.keys(filterParams)){
+   for(const [key,value] of Object.entries(filterParams)){
       if(Array.isArray(value) && value.length > 0){
         const paramValue=value.join(',');
 
