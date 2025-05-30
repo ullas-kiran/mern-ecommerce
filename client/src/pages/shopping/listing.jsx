@@ -72,8 +72,10 @@ const ShoppingListing = () => {
 
   // fetch products
   useEffect(()=>{
-    dispatch(fetchAllFilteredProducts())
-  },[dispatch]);
+    if(filters!==null && sort !==null){
+      dispatch(fetchAllFilteredProducts({ filterParams:filters, sortParams:sort }))
+    }
+  },[dispatch,sort,filters]);
 
 
 

@@ -48,6 +48,19 @@ const getFilteredProducts=async(req,res)=>{
 
 }
 
+const getProductsDetails=async(req,res)=>{
+  try {
+
+    const {}=req.params
+    
+  } catch (error) {
+          res.status(500).json({
+        success:false,
+        message:'Some error occured'
+      })  
+  }
+}
+
 
 module.exports={getFilteredProducts}
 
