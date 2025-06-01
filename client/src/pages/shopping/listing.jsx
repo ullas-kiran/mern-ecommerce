@@ -3,7 +3,7 @@ import ShoppingProductTile from "@/components/shopping/product-tile"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { sortOptions } from "@/config"
-import { fetchAllFilteredProducts } from "@/store/shop/product-slice"
+import { fetchAllFilteredProducts, fetchProductsDetails } from "@/store/shop/product-slice"
 import { ArrowUpDownIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -25,7 +25,7 @@ function createSearchParamsHelper(filterParams){
 
 const ShoppingListing = () => {
   const dispatch=useDispatch();
-  const {productList} = useSelector(state=>state.shopProducts);
+  const {productList,productDetails} = useSelector(state=>state.shopProducts);
   const [filters,setFilters] = useState({});
   const [sort,setSort] =useState(null);
   const [searchParams,setSearchParams]=useSearchParams()
@@ -79,9 +79,10 @@ const ShoppingListing = () => {
 
 
   function handleGetProductDetails(getCurrentProductId){
-  
+    dispatch(fetchProductsDetails(getCurrentProductId))
   }
 
+  console.log("productDetails",productDetails)
 
 
   return (
