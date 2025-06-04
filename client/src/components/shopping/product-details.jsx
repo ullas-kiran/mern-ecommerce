@@ -14,10 +14,14 @@ const ProductDetailsDialog = ({open,setOpen,productDetails}) => {
             className='aspect-square w-full object-cover'
             />
            </div>
-           <div className='grid gap-6'>
+           <div className=''>
             <div>
               <h1 className='text-3xl font-extrabold'>{productDetails?.title}</h1>
-              <p className='text-muted-foreground'>{productDetails?.description}</p>
+              <p className='text-muted-foreground text-2xl mb-5'>{productDetails?.description}</p>
+            </div>
+            <div className='flex  items-center justify-between'>
+              <p className={`text-3xl font-bold text-primary ${productDetails?.salePrice>0?'line-through':''}`}>${productDetails?.price}</p>
+              {productDetails?.salePrice>0?<p className='text-2xl  font-bold text-muted-foreground'>${productDetails?.salePrice}</p>:null}
             </div>
            </div>
       </DialogContent>

@@ -89,9 +89,9 @@ const ShoppingListing = () => {
     if(productDetails !== null){
       setOpenDetailsDialogue(true)
     }
-  },[])
+  },[productDetails])
 
-  console.log("productDetails",productDetails)
+
 
 
   return (
