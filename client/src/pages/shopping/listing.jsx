@@ -1,4 +1,5 @@
 import ProductFilter from "@/components/shopping/filter"
+import ProductDetailsDialog from "@/components/shopping/product-details"
 import ShoppingProductTile from "@/components/shopping/product-tile"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -28,7 +29,8 @@ const ShoppingListing = () => {
   const {productList,productDetails} = useSelector(state=>state.shopProducts);
   const [filters,setFilters] = useState({});
   const [sort,setSort] =useState(null);
-  const [searchParams,setSearchParams]=useSearchParams()
+  const [searchParams,setSearchParams]=useSearchParams();
+  const [openDetailsDialogue,setOpenDetailsDialogue]=useState(false)
 
   function handleSort(value){
     setSort(value)
@@ -82,6 +84,13 @@ const ShoppingListing = () => {
     dispatch(fetchProductsDetails(getCurrentProductId))
   }
 
+
+  useEffect(()=>{
+    if(productDetails !== null){
+      setOpenDetailsDialogue(true)
+    }
+  },[])
+
   console.log("productDetails",productDetails)
 
 
@@ -116,6 +125,7 @@ const ShoppingListing = () => {
                }
           </div>
        </div>
+       <ProductDetailsDialog open={openDetailsDialogue} setOpen={setOpenDetailsDialogue} productDetails={productDetails}/>
     </div>
   )
 }
