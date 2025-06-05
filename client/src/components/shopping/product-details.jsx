@@ -1,5 +1,8 @@
 import React from 'react'
 import { Dialog, DialogContent } from '../ui/dialog'
+import { Button } from '../ui/button'
+import { Separator } from '../ui/separator'
+import { Avatar, AvatarFallback } from '../ui/avatar'
 
 const ProductDetailsDialog = ({open,setOpen,productDetails}) => {
   return (
@@ -17,15 +20,28 @@ const ProductDetailsDialog = ({open,setOpen,productDetails}) => {
            <div className=''>
             <div>
               <h1 className='text-3xl font-extrabold'>{productDetails?.title}</h1>
-              <p className='text-muted-foreground text-2xl mb-5'>{productDetails?.description}</p>
+              <p className='text-muted-foreground text-2xl mb-5 mt-4'>{productDetails?.description}</p>
             </div>
             <div className='flex  items-center justify-between'>
               <p className={`text-3xl font-bold text-primary ${productDetails?.salePrice>0?'line-through':''}`}>${productDetails?.price}</p>
               {productDetails?.salePrice>0?<p className='text-2xl  font-bold text-muted-foreground'>${productDetails?.salePrice}</p>:null}
             </div>
+            <div className='mt-5 mb-5'>
+                <Button>Add to Cart</Button>
+            </div>
+                <Separator/>
+                <div className='max-h-[300px] overflow-auto'>
+                   <h2 className='text-xl font-bold mb-4'>Review</h2>
+                   <div className='grid gap-6'>
+                    <div className='flex gap-4'>
+                      <Avatar>
+                        <AvatarFallback>SM</AvatarFallback>
+                      </Avatar>
+                    </div>
+                   </div>
+                </div>
            </div>
       </DialogContent>
-
     </Dialog>
   )
 }
