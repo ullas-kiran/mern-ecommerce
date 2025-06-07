@@ -49,7 +49,7 @@ const ProductDetailsDialog = ({open,setOpen,productDetails}) => {
                           <StarIcon className='w-5 h-5 fill-primary'/>
                           <StarIcon className='w-5 h-5 fill-primary'/>
                         </div>
-                        <p>This is an awesome product</p>
+                        <p className='text-muted-foreground'>This is an awesome product</p>
                       </div>
                     </div>
                    </div>
