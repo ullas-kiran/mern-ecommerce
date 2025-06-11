@@ -82,3 +82,5 @@ const shoppingCartSlice=createSlice({
        })
     }
 })
+
+export default shoppingCartSlice.reducer
