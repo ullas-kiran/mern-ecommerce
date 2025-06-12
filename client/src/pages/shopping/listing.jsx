@@ -29,7 +29,6 @@ const ShoppingListing = () => {
   const dispatch=useDispatch();
   const {productList,productDetails} = useSelector(state=>state.shopProducts);
   const {user} = useSelector(state=>state.auth);
-  const {cartItems} = useSelector(state=>state.shopCart);
   const [filters,setFilters] = useState({});
   const [sort,setSort] =useState(null);
   const [searchParams,setSearchParams]=useSearchParams();
@@ -105,7 +104,7 @@ const ShoppingListing = () => {
   },[productDetails])
 
 
-console.log(cartItems,"cart");
+
 
 
   return (
