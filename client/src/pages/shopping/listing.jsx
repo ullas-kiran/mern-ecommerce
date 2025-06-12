@@ -4,7 +4,7 @@ import ShoppingProductTile from "@/components/shopping/product-tile"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { sortOptions } from "@/config"
-import { addToCart } from "@/store/shop/cart-slice"
+import { addToCart, fetchCartItems } from "@/store/shop/cart-slice"
 import { fetchAllFilteredProducts, fetchProductsDetails } from "@/store/shop/product-slice"
 import { ArrowUpDownIcon } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -29,6 +29,7 @@ const ShoppingListing = () => {
   const dispatch=useDispatch();
   const {productList,productDetails} = useSelector(state=>state.shopProducts);
   const {user} = useSelector(state=>state.auth);
+  const {cartItems} = useSelector(state=>state.shopCart);
   const [filters,setFilters] = useState({});
   const [sort,setSort] =useState(null);
   const [searchParams,setSearchParams]=useSearchParams();
@@ -64,7 +65,11 @@ const ShoppingListing = () => {
 
   function handleAddToCart(getCurrentProductId){
     dispatch(addToCart({userId:user?.id,productId:getCurrentProductId,quantity:1})).then((data)=>{
-    console.log(data)
+   
+      if(data?.payload?.success){  
+       dispatch(fetchCartItems(user?.id))
+     }  
+  
     })
   }
 
@@ -100,6 +105,7 @@ const ShoppingListing = () => {
   },[productDetails])
 
 
+console.log(cartItems,"cart");
 
 
   return (

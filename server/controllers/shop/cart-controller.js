@@ -63,7 +63,7 @@ const fetchCartItems=async(req,res)=>{
         }
 
         const cart=await Cart.findOne({userId}).populate({
-            path:'item.productId',
+            path:'items.productId',
             select:'image title price salePrice'
         })
 
@@ -138,7 +138,7 @@ const updateCartItemQty=async(req,res)=>{
         await cart.save();
 
         await cart.populate({
-            path:'item.productId',
+            path:'items.productId',
             select:'image title price salePrice'
         })
 
@@ -179,7 +179,7 @@ const deletCartItem=async(req,res)=>{
         }
 
         const cart=await Cart.findOne({userId}).populate({
-            path:'item.productId',
+            path:'items.productId',
             select:'image title price salePrice'
         });
 
@@ -195,7 +195,7 @@ const deletCartItem=async(req,res)=>{
         await cart.save();
 
         await Cart.populate({
-            path:'item.productId',
+            path:'items.productId',
             select:'image title price salePrice'
         })
 
