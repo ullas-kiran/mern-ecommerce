@@ -10,6 +10,7 @@ import { ArrowUpDownIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createSearchParams, useSearchParams } from "react-router-dom"
+import { toast } from "sonner"
 
 
 function createSearchParamsHelper(filterParams){
@@ -67,6 +68,7 @@ const ShoppingListing = () => {
    
       if(data?.payload?.success){  
        dispatch(fetchCartItems(user?.id))
+       toast.success("Product is added to cart");
      }  
   
     })

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../ui/button';
-import { Minus, Plus } from 'lucide-react';
+import { Minus, Plus, Trash } from 'lucide-react';
 
 const UserCartItemsContent = ({cartItem}) => {
   console.log(cartItem,"cartItems");
@@ -14,12 +14,18 @@ const UserCartItemsContent = ({cartItem}) => {
             <Minus className="w-4 h-4" />
             <span className="sr-only">Decrease</span>
           </Button>
-          <span>{cartItem?.quantity}</span>
+          <span className="font-semibold">{cartItem?.quantity}</span>
             <Button variant={'outline'} size={'icon'} className={'h-8 w-8 rounded-full'}>
             <Plus className="w-4 h-4" />
             <span className="sr-only">Increase</span>
           </Button>
         </div>
+       </div>
+       <div className="flex flex-col items-end">
+        <p className="font-semibold">
+          ${((cartItem?.salePrice > 0?cartItem?.salePrice:cartItem?.price) * cartItem?.quantity).toFixed(2)}
+        </p>
+        <Trash className="cusror-pointer mt-1"  size={20}/>
        </div>
     </div>
   )
