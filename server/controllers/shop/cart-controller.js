@@ -208,10 +208,13 @@ const deletCartItem=async(req,res)=>{
             quantity:item.quantity
           }))
 
-        res.status(200).json({
-            success:true,
-            message:"Cart item deleted successfully"
-          })
+    res.status(200).json({
+      success: true,
+      data: {
+        ...cart._doc,
+        items: populateCartItems,
+      },
+    });
     } catch (error) {
         console.log(error);
         res.status(500).json({
