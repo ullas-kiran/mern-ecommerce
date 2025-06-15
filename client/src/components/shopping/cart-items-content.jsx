@@ -13,7 +13,7 @@ const UserCartItemsContent = ({cartItem}) => {
      dispatch(updateCartQuantity({
       userId:user?.id,
       productId:getCartItem?.productId,
-      quantity:typeOfAction==='add'?getCartItem?.quantity-1:getCartItem?.quantity+1 
+      quantity:typeOfAction==='plus'?getCartItem?.quantity-1:getCartItem?.quantity+1 
      })).then(data=>{
       if(data?.payload?.success){
         toast.success('Cart updated successfully')
@@ -40,7 +40,7 @@ const UserCartItemsContent = ({cartItem}) => {
             <span className="sr-only">Decrease</span>
           </Button>
           <span className="font-semibold">{cartItem?.quantity}</span>
-            <Button variant={'outline'} size={'icon'} className={'h-8 w-8 rounded-full'} onClick={()=>handleUpdateQuantity(cartItem,'plus')}>
+            <Button variant={'outline'} size={'icon'} className={'h-8 w-8 rounded-full'} disabled={cartItem?.quantity===1} onClick={()=>handleUpdateQuantity(cartItem,'plus')}>
             <Plus className="w-4 h-4" />
             <span className="sr-only">Increase</span>
           </Button>
