@@ -55,9 +55,10 @@ const ShoppingHome = () => {
              <h2 className="text-3xl font-bold text-center mb-8">Shop by category</h2>
              <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {
-                  categoriesWithIcon.map((item,index)=><Card className={'cursor-pointer hover:shadow-lg transition-shadow'} key={item.id}>
+                  categoriesWithIcon.map((categoryItem,index)=><Card className={'cursor-pointer hover:shadow-lg transition-shadow'} key={categoryItem.id}>
                       <CardContent className={'flex flex-col items-center justify-center p-6'}>
-                            <item.icon className="w-12 h-12"/>
+                            <categoryItem.icon className="w-12 h-12 mb-4 text-primary"/>
+                            <span className="font-bold">{categoryItem.label}</span>
                       </CardContent>
                   </Card>)
                 }
