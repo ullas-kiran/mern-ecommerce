@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '../ui/button';
 import { Minus, Plus, Trash } from 'lucide-react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteCartItem, updateCartQuantity } from '@/store/shop/cart-slice';
 import { toast } from 'sonner';
 
