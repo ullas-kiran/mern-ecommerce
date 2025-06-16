@@ -2,11 +2,40 @@ import bannerOne from "@/assets/banner-1.webp";
 import bannerTwo from "@/assets/banner-1.webp";
 import bannerThree from "@/assets/banner-1.webp";
 import { Button } from "@/components/ui/button";
-import { ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { BabyIcon, ChevronsLeftIcon, ChevronsRightIcon, CloudLightning, ShirtIcon, UmbrellaIcon, WatchIcon } from "lucide-react";
 
 const ShoppingHome = () => {
 
   const slides=[bannerOne,bannerTwo,bannerThree];
+
+  const categoriesWithIcon = [
+    {
+      id: "men",
+      label: "Men",
+      icon: ShirtIcon,
+    },
+    {
+      id: "women",
+      label: "Women",
+      icon: CloudLightning,
+    },
+    {
+      id: "kids",
+      label: "Kids",
+      icon: BabyIcon,
+    },
+    {
+      id: "footwear",
+      label: "Footwear",
+      icon: UmbrellaIcon,
+    },
+    {
+      id: "accessories",
+      label: "Accessories",
+      icon: WatchIcon,
+    },
+  ];
 
   return (
     <div className="flex flex-col min-h-full">
@@ -23,7 +52,16 @@ const ShoppingHome = () => {
         </div>  
         <section className="py-12 bg-gray-50">
           <div className="container mx-auto px-4">
-             <h2>Shop by category</h2>
+             <h2 className="text-3xl font-bold text-center mb-8">Shop by category</h2>
+             <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {
+                  categoriesWithIcon.map((item,index)=><Card className={'cursor-pointer hover:shadow-lg transition-shadow'} key={item.id}>
+                      <CardContent className={'flex flex-col items-center justify-center p-6'}>
+                            <item.icon className="w-12 h-12"/>
+                      </CardContent>
+                  </Card>)
+                }
+             </div>
           </div>
         </section>   
     </div>

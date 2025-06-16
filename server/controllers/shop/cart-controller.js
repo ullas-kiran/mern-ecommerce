@@ -142,14 +142,14 @@ const updateCartItemQty=async(req,res)=>{
             select:'image title price salePrice'
         })
 
-        const populateCartItems=cart.items.map(item=>({
-            productId:item.productId?item.productId._id:null,
-            title:item.title?item.productId.title:'product not found',
-            image:item.image?item.productId.image:null,
-            price:item.price?item.productId.price:null,
-            salePrice:item.salePrice?item.productId.salePrice:null,
-            quantity:item.quantity
-          }))
+        const populateCartItems = cart.items.map((item) => ({
+        productId: item.productId ? item.productId._id : null,
+        image: item.productId ? item.productId.image : null,
+        title: item.productId ? item.productId.title : "Product not found",
+        price: item.productId ? item.productId.price : null,
+        salePrice: item.productId ? item.productId.salePrice : null,
+        quantity: item.quantity,
+        }));
 
           res.status(200).json({
             success:true,

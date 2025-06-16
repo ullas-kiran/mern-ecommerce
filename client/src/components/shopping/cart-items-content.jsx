@@ -13,7 +13,7 @@ const UserCartItemsContent = ({cartItem}) => {
      dispatch(updateCartQuantity({
       userId:user?.id,
       productId:getCartItem?.productId,
-      quantity:typeOfAction==='plus'?getCartItem?.quantity-1:getCartItem?.quantity+1 
+      quantity:typeOfAction==='plus'?getCartItem?.quantity+1:getCartItem?.quantity-1 
      })).then(data=>{
       if(data?.payload?.success){
         toast.success('Cart updated successfully')
