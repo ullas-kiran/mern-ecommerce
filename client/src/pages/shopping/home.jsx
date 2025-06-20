@@ -1,14 +1,17 @@
 import bannerOne from "@/assets/banner-1.webp";
 import bannerTwo from "@/assets/banner-2.webp";
 import bannerThree from "@/assets/banner-3.webp";
+import ProductDetailsDialog from "@/components/shopping/product-details";
 import ShoppingProductTile from "@/components/shopping/product-tile";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { fetchAllFilteredProducts } from "@/store/shop/product-slice";
+import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
+import { fetchAllFilteredProducts, fetchProductsDetails } from "@/store/shop/product-slice";
 import { BabyIcon, ChevronsLeftIcon, ChevronsRightIcon, CloudLightning, ShirtIcon, UmbrellaIcon, WatchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 
 const categoriesWithIcon = [
@@ -51,10 +54,30 @@ const categoriesWithIcon = [
 
 const ShoppingHome = () => {
   const [currentSlide,setCurrentSlide]=useState(0);
-  const {productList} = useSelector(state=>state.shopProducts);  
+  const {productList,productDetails} = useSelector(state=>state.shopProducts); 
+  const [openDetailsDialogue,setOpenDetailsDialogue]=useState(false)
+  const {user} = useSelector(state=>state.auth);   
   const slides=[bannerOne,bannerTwo,bannerThree];
   const dispatch=useDispatch();
   const navigate=useNavigate();
+
+    function handleAddToCart(getCurrentProductId){
+    dispatch(addToCart({userId:user?.id,productId:getCurrentProductId,quantity:1})).then((data)=>{
+   
+      if(data?.payload?.success){  
+       dispatch(fetchCartItems(user?.id))
+       toast.success("Product is added to cart");
+     }  
+  
+    })
+  }
+
+
+  useEffect(()=>{
+    if(productDetails !== null){
+      setOpenDetailsDialogue(true)
+    }
+  },[productDetails])
 
   useEffect(()=>{
     const timer=setInterval(()=>{
@@ -80,6 +103,10 @@ const ShoppingHome = () => {
 
     navigate(`/shop/listing`)
   }
+
+    function handleGetProductDetails(getCurrentProductId){
+      dispatch(fetchProductsDetails(getCurrentProductId))
+    }
 
   return (
     <div className="flex flex-col min-h-full">
@@ -131,11 +158,12 @@ const ShoppingHome = () => {
              <h2 className="text-3xl font-bold text-center mb-8">Feature Products</h2>
              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {
-                productList && productList?.length>0?productList?.map((productItem)=><ShoppingProductTile  key={productItem} product={productItem}/>):null
+                productList && productList?.length>0?productList?.map((productItem)=><ShoppingProductTile handleAddToCart={handleAddToCart} handleGetProductDetails={handleGetProductDetails}  key={productItem} product={productItem}/>):null
               }
              </div>
              </div>
         </section>
+       <ProductDetailsDialog open={openDetailsDialogue} setOpen={setOpenDetailsDialogue} productDetails={productDetails}/>
     </div>
   )
 }

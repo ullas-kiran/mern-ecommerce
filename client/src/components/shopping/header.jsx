@@ -31,7 +31,7 @@ function MenuItems() {
     <nav className="flex p-4 flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
       {shoppingViewHeaderMenuItems.map((menuItem) => (
         <Label
-          onClick={handleNavigate}
+          onClick={()=>handleNavigate(menuItem)}
           className="text-sm font-medium cursor-pointer"
           key={menuItem.id}
         >
