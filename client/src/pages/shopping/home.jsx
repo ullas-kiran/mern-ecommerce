@@ -8,6 +8,7 @@ import { fetchAllFilteredProducts } from "@/store/shop/product-slice";
 import { BabyIcon, ChevronsLeftIcon, ChevronsRightIcon, CloudLightning, ShirtIcon, UmbrellaIcon, WatchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 const categoriesWithIcon = [
@@ -53,6 +54,7 @@ const ShoppingHome = () => {
   const {productList} = useSelector(state=>state.shopProducts);  
   const slides=[bannerOne,bannerTwo,bannerThree];
   const dispatch=useDispatch();
+  const navigate=useNavigate();
 
   useEffect(()=>{
     const timer=setInterval(()=>{
@@ -67,7 +69,17 @@ const ShoppingHome = () => {
     dispatch(fetchAllFilteredProducts({ filterParams: {}, sortParams: "price-lowtohigh" }))
   },[dispatch])
 
-  console.log(productList,'productList');
+  function handleNavigateToListingPage(getCurrentItem,getCurrentSection){
+    sessionStorage.removeItem("filters");
+
+    const currentFilter={
+      [session]:[getCurrentItem.id]
+    }
+
+    sessionStorage.setItem('filters',JSON.stringify(currentFilter));
+
+    navigate(`/shop/listing`)
+  }
 
   return (
     <div className="flex flex-col min-h-full">
@@ -87,7 +99,7 @@ const ShoppingHome = () => {
              <h2 className="text-3xl font-bold text-center mb-8">Shop by category</h2>
              <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {
-                  categoriesWithIcon.map((categoryItem,index)=><Card className={'cursor-pointer hover:shadow-lg transition-shadow'} key={categoryItem.id}>
+                  categoriesWithIcon.map((categoryItem,index)=><Card onClick={()=>handleNavigateToListingPage(categoryItem,'category')} className={'cursor-pointer hover:shadow-lg transition-shadow'} key={categoryItem.id}>
                       <CardContent className={'flex flex-col items-center justify-center p-6'}>
                             <categoryItem.icon className="w-12 h-12 mb-4 text-primary"/>
                             <span className="font-bold">{categoryItem.label}</span>
