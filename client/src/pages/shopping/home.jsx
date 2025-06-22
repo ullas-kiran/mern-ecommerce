@@ -92,11 +92,11 @@ const ShoppingHome = () => {
     dispatch(fetchAllFilteredProducts({ filterParams: {}, sortParams: "price-lowtohigh" }))
   },[dispatch])
 
-  function handleNavigateToListingPage(getCurrentItem,getCurrentSection){
+  function handleNavigateToListingPage(getCurrentItem,section){
     sessionStorage.removeItem("filters");
 
     const currentFilter={
-      [session]:[getCurrentItem.id]
+      [section]:[getCurrentItem.id]
     }
 
     sessionStorage.setItem('filters',JSON.stringify(currentFilter));
