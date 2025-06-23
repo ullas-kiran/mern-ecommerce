@@ -8,7 +8,14 @@ const addAddress=async(req,res)=>{
             success:false,
             message:'Invalid data provided!'
         })
-     }   
+     }  
+     
+     const newlyCreatedAddress=new Address({
+        userId,address,city,pincode,notes,phone
+     })
+
+     await newlyCreatedAddress.save();
+     
     } catch (error) {
         console.log(error);
         res.status(500).json({
