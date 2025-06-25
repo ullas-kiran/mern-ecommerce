@@ -15,6 +15,11 @@ const addAddress=async(req,res)=>{
      })
 
      await newlyCreatedAddress.save();
+
+     res.status(201).json({
+        success:true,
+        data:newlyCreatedAddress
+     })
      
     } catch (error) {
         console.log(error);
@@ -27,6 +32,22 @@ const addAddress=async(req,res)=>{
 
 const fetchAllAddress=async(req,res)=>{
     try {
+
+        const {userId} =req.params
+
+           if(!userId){
+        return res.status(400).json({
+            success:false,
+            message:'User id is required!'
+        })
+       }  
+
+       const addressList=await Address.find({userId});
+
+       res.status(200).json({
+        success:true,
+        data:addressList
+       })
         
     } catch (error) {
         console.log(error);
@@ -39,7 +60,15 @@ const fetchAllAddress=async(req,res)=>{
 
 const editAddress=async(req,res)=>{
     try {
-        
+         const {userId,addressId} =req.params;
+
+    if(!userId||!addressId){
+        return res.status(400).json({
+            success:false,
+            message:'User id and address id is required!'
+        })
+       }  
+
     } catch (error) {
         console.log(error);
         res.status(500).json({
