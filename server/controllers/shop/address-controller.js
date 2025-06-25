@@ -61,13 +61,31 @@ const fetchAllAddress=async(req,res)=>{
 const editAddress=async(req,res)=>{
     try {
          const {userId,addressId} =req.params;
+         const formData=req.body;
 
     if(!userId||!addressId){
         return res.status(400).json({
             success:false,
-            message:'User id and address id is required!'
+            message:'User and address id is required!'
         })
        }  
+
+       const address=await Address.findOneAndUpdate({
+        _id:addressId,
+        userId 
+       },formData,{new:true})
+
+       if(!address){
+        return res.status(404).json({
+            success:true,
+            message:'Address not found'
+        })
+       }
+
+       res.status(200).json({
+        success:true,
+        data:address
+       })
 
     } catch (error) {
         console.log(error);
