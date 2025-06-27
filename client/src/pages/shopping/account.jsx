@@ -1,8 +1,14 @@
-
+import accImg from "@/assets/account.jpg"
 
 const ShoppingAccount = () => {
   return (
-    <div>ShoppingAccount</div>
+    <div className="flex flex-col">
+       <div className="relative h-[350px] w-full overflow-hidden">
+        <img src={accImg}
+         className="h-full w-full object-cover object-center"
+        />
+        </div>      
+    </div>
   )
 }
 
