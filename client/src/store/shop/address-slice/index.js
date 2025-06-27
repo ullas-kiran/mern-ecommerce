@@ -35,6 +35,45 @@ const addressSlice=createSlice({
     initialState,
     reducers:{},
     extraReducers:(builder)=>{
+      builder.addCase(addNewAddress.pending,(state)=>{
+        state.isLoading=true;
+      }).addCase(addNewAddress.fulfilled,(state,action)=>{
+        state.isLoading=false;
+        state.addressList=action.payload.data
+      }).addCase(addNewAddress.rejected,(state)=>{
+        state.isLoading=false
+        state.addressList=[]
+      })
+      
+       builder.addCase(fetchAllAddresses.pending,(state)=>{
+        state.isLoading=true;
+      }).addCase(fetchAllAddresses.fulfilled,(state,action)=>{
+        state.isLoading=false;
+        state.addressList=action.payload.data
+      }).addCase(fetchAllAddresses.rejected,(state)=>{
+        state.isLoading=false
+        state.addressList=[]
+      })
+
+       builder.addCase(editAddress.pending,(state)=>{
+        state.isLoading=true;
+      }).addCase(editAddress.fulfilled,(state,action)=>{
+        state.isLoading=false;
+        state.addressList=action.payload.data
+      }).addCase(editAddress.rejected,(state)=>{
+        state.isLoading=false
+        state.addressList=[]
+      })
+
+       builder.addCase(deleteAddress.pending,(state)=>{
+        state.isLoading=true;
+      }).addCase(deleteAddress.fulfilled,(state,action)=>{
+        state.isLoading=false;
+        state.addressList=action.payload.data
+      }).addCase(deleteAddress.rejected,(state)=>{
+        state.isLoading=false
+        state.addressList=[]
+      })
 
     }
 })
